@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,7 +14,7 @@ import java.util.TimerTask;
 public class ResolumeTextCycler {
     private static final String API_URL = "http://localhost:8080/api/v1/composition/layers/1/clips/1";
     private static final String csvPath = "./src/TextExamples.csv";
-    private static String[] messages = null; // Messages to cycle
+    private static List<String> messages = null; // Messages to cycle
     private static final int seconds = 3; //Enter value in seconds to change the text
     private static int index = 0;
 
@@ -32,8 +33,9 @@ public class ResolumeTextCycler {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                sendPutRequest(messages[index]);
-                index = (index + 1) % messages.length; // Cycle through messages
+                sendPutRequest(messages.get(index));
+                index = (index + 1) % messages.size(); // Cycle through messages
+                Collections.shuffle(messages);
             }
         }, 0, seconds * 1000); 
     }
@@ -62,7 +64,7 @@ public class ResolumeTextCycler {
         }
     }
 
-    public static String[] readSingleColumnCSV(String filePath) {
+    public static List<String> readSingleColumnCSV(String filePath) {
         List<String> data = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -74,7 +76,7 @@ public class ResolumeTextCycler {
             e.printStackTrace();
         }
 
-        return data.toArray(new String[0]); // Convert List to String array
+        return data; // Convert List to String array
     }
 
 }
