@@ -1,2 +1,3 @@
-*.csv
+*/*.csv
 *.class
+bin/TextExamples.csv
