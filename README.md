@@ -1,6 +1,7 @@
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This project reads in a CSV, and send it line by line over the resolume web API to edit a text block.
+You will need to update the API URL for the layer/column of your text object and the port of your webserver
 
 ## Folder Structure
 
@@ -9,10 +10,12 @@ The workspace contains two folders by default, where:
 - `src`: the folder to maintain sources
 - `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
 ## Dependency Management
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+This project currently has no dependencies
+
+## Project Status
+
+This project is in initial release being developed by @Jbuckle04.
+The version on main *should* work, but if it doesn't I might fix it eventually
