@@ -12,9 +12,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ResolumeTextCycler {
-    private static final String API_URL = "http://localhost:8080/api/v1/composition/layers/1/clips/1";
-    private static final String csvPath = "./src/TextExamples.csv";
-    private static List<String> messages = null; // Messages to cycle
+    private static final String API_URL = "http://10.1.10.1:8080/api/v1/composition/layers/3/clips/17";
+    private static final String csvPath = "./src/TextExamples.csv"; // Messages to cycle, one per line 
+    private static List<String> messages = null; 
     private static final int seconds = 3; //Enter value in seconds to change the text
     private static int index = 0;
 
@@ -28,6 +28,11 @@ public class ResolumeTextCycler {
         }
 
         messages = readSingleColumnCSV(csvPath);
+        
+        // Remove BOM char from start of file
+        char[] c = {(char)65279};
+        String s = new String(c);
+        messages.set(0, messages.get(0).replace(s, ""));
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
